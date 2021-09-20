@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 import os
 import asyncio
 from traceback import print_exc
-from subprocess import PIPE
+from subprocess import PIPE, STDOUT
 from time import time
 
 api_id = os.environ['API_ID']
@@ -45,10 +45,23 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
             stderr=PIPE
         )
         await proc2.communicate()
+        main
+        await _info.edit('duration çekiyom')
+        proc3 = await asyncio.create_subprocess_shell(
+            f'ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {filename}.mp4',
+            stdout=PIPE,
+            stderr=STDOUT
+        )
+        duration, _ = await proc3.communicate()
+        await _info.edit('yüklüyom telegrama')
+
         await _info.edit("Dosya Telegram'a yükleniyor...")
+        main
         def progress(current, total):
             print(message.from_user.first_name, ' -> ', current, '/', total, sep='')
-        return await client.send_video(message.chat.id, f'{filename}.mp4', thumb=f'{filename}.jpg', progress=progress)
+        await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(float(duration.decode())), thumb=f'{filename}.jpg', progress=progress)
+        os.remove(f'{filename}.mp4')
+        os.remove(f'{filename}.jpg')
     except:
         print_exc()
         return await _info.edit('`Bir hata oluştu.`')
