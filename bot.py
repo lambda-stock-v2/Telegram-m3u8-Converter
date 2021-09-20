@@ -27,7 +27,7 @@ async def convert(client, message):
 Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
 ''')
     _info = await message.reply('Lütfen bekleyin...')
-    filename = f'{message.reply_to_message.text}'
+    filename = f'{message.from_user.id}_{int(time())}'
     proc = await asyncio.create_subprocess_shell(
         f'ffmpeg -i {link} -c copy -bsf:a aac_adtstoasc {filename}.mp4',
         stdout=PIPE,
