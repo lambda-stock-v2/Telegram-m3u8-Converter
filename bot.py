@@ -46,14 +46,14 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
         )
         await proc2.communicate()
         main
-        await _info.edit('duration çekiyom')
+        await _info.edit('Video süresi çekiliyor...')
         proc3 = await asyncio.create_subprocess_shell(
             f'ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {filename}.mp4',
             stdout=PIPE,
             stderr=STDOUT
         )
         duration, _ = await proc3.communicate()
-        await _info.edit('yüklüyom telegrama')
+        await _info.edit('Telegrama yükleniyor...')
 
         await _info.edit("Dosya Telegram'a yükleniyor...")
         main
