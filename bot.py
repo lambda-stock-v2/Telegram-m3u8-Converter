@@ -27,7 +27,7 @@ async def convert(client, message):
 Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
 ''')
     _info = await message.reply('Lütfen bekleyin...')
-    filename = f'{message.from_user.id}_{int(time())}'
+    filename = f'{message.reply_to_message.text}'
     proc = await asyncio.create_subprocess_shell(
         f'ffmpeg -i {link} -c copy -bsf:a aac_adtstoasc {filename}.mp4',
         stdout=PIPE,
@@ -57,7 +57,7 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
         await _info.edit("Dosya Telegram'a yükleniyor...")
         def progress(current, total):
             print(message.from_user.first_name, ' -> ', current, '/', total, sep='')
-        await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(float(duration.decode())), thumb=f'{filename}.jpg', progress=progress)
+        await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(float(duration.decode())), thumb=f'{filename}.jpg', caption = f'{filename}', progress=progress)
         os.remove(f'{filename}.mp4')
         os.remove(f'{filename}.jpg')
     except:
