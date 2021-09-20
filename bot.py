@@ -45,7 +45,6 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
             stderr=PIPE
         )
         await proc2.communicate()
-        main
         await _info.edit('Video süresi çekiliyor...')
         proc3 = await asyncio.create_subprocess_shell(
             f'ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {filename}.mp4',
@@ -56,7 +55,6 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
         await _info.edit('Telegrama yükleniyor...')
 
         await _info.edit("Dosya Telegram'a yükleniyor...")
-        main
         def progress(current, total):
             print(message.from_user.first_name, ' -> ', current, '/', total, sep='')
         await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(float(duration.decode())), thumb=f'{filename}.jpg', progress=progress)
