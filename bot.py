@@ -57,7 +57,7 @@ Github Repo: [Click to go.](https://github.com/lambda-stock/Telegram-m3u8-Conver
         await _info.edit("Dosya Telegram'a yükleniyor...")
         def progress(current, total):
             print(message.from_user.first_name, ' -> ', current, '/', total, sep='')
-        await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(float(duration.decode())), thumb=f'{filename}.jpg', caption = f'{filename}', progress=progress)
+        await client.send_video(message.chat.id, f'{filename}.mp4', duration=int(duration.decode()), thumb=f'{filename}.jpg', caption = f'{filename}', progress=progress)
         os.remove(f'{filename}.mp4')
         os.remove(f'{filename}.jpg')
     except:
