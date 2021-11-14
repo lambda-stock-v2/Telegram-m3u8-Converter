@@ -14,7 +14,7 @@ app = Client('m3u8', api_id, api_hash, bot_token=bot_token)
 @app.on_message(filters.command('start'))
 async def start(_, message):
     await message.reply(f'''Kullanım: `/convert m3u8_link`
-Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
+Github Repo: [Click to go.](https://github.com/lambda-stock/Telegram-m3u8-Converter/)
 ''')
 
 @app.on_message(filters.command(['convert', 'cevir']))
@@ -24,7 +24,7 @@ async def convert(client, message):
     except:
         print_exc()
         return await message.reply(f'''Kullanım: `/convert m3u8_link`
-Github Repo: [Click to go.](https://github.com/lambda-stock/m3u8bot/)
+Github Repo: [Click to go.](https://github.com/lambda-stock/Telegram-m3u8-Converter/)
 ''')
     _info = await message.reply('Lütfen bekleyin...')
     filename = f'{message.from_user.id}_{int(time())}'
